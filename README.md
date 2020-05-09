@@ -12,7 +12,7 @@ Latest Development Build Status
 
 	```
 	export IMAGE_TAG=planimation-frontend:latest
-	export UNITY_LICENSE=LICENSE_FILE=Unity_lic.ulf
+	export LICENSE_FILE=Unity_lic.ulf
 	docker build --no-cache -t ${IMAGE_TAG} --build-arg LICENSE_FILE=${LICENSE_FILE} -f docker/release/Dockerfile .
 	docker run -d -p 8080:80 ${IMAGE_TAG}
 	docker ps
