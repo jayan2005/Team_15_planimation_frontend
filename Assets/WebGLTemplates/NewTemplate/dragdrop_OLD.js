@@ -53,8 +53,7 @@ function uploadPDDLFile() {
   } else {
     var regexp = /(\.|\/)pddl$/;
     if(!planimation_dragdrop.files[0].name.match(regexp)) {
-      //alert("Please put in pddl files!");
-      customAlertBox("Incorrect File Type", "<p>Please upload PDDL (.pddl) file only.</p>");
+      alert("Please put in pddl files!");
       return;
     }
     uploadSingleFile();
@@ -65,7 +64,6 @@ function uploadVFGFile() {
   var regexp = /(\.|\/)vfg$/;
   if(!planimation_dragdrop.files[0].name.match(regexp)) {
     alert("Please put in vfg files!");
-    customAlertBox("Incorrect File Type", "<p>Please upload VFG (.vfg) file only.</p>");
     return;
   }
   // take the first file and upload it
@@ -79,19 +77,16 @@ function uploadSingleFile() {
 }
 
 function uploadMultipleFiles() {
-  var open = document.getElementById("modal-open"); // hyper link id
-  var typeModal = document.getElementById("file-type"); //table-body
+  var open = document.getElementById("modal-open");
+  var typeModal = document.getElementById("file-type");
   typeModal.innerHTML = "";
   var regexp = /(\.|\/)pddl$/;
   var fileIndex = 1;
   for(var i = 0; i < planimation_dragdrop.files.length; i++) {
     if(!planimation_dragdrop.files[i].name.match(regexp)) {
-      //alert("[Invalid file: " + planimation_dragdrop.files[i].name + " ] " + "Please put in pddl files!");
-      var msg = "<p>" + planimation_dragdrop.files[i].name + " - please upload pddl files!.</p>";
-      customAlertBox("Incorrect File Type", msg);
+      alert("[Invalid file: " + planimation_dragdrop.files[i].name + " ] " + "Please put in pddl files!");
     } else {
-      typeModal.appendChild(createFileDiv(planimation_dragdrop.files[i], fileIndex));  //will append the UI elements
-      btnListeners(planimation_dragdrop.files[i], fileIndex);
+      typeModal.appendChild(createFileDiv(planimation_dragdrop.files[i], fileIndex));
       fileIndex++;
     }
   }
@@ -133,11 +128,7 @@ function fileLoaderMultiple(file) {
 
 // appends type-select menu on the modal window according to file(s)
 function createFileDiv(file, index) {
-
-  var table_row = document.createElement('tr');
-  
-  table_row.innerHTML = "<td ><i class='far fa-file-powerpoint'></i> </td><td class='text-left' id='file_'" + index + ">" + file.name + "</td><td class='text-center'>" + "<div class='btn-group' role='group'>" + "<button type='button' class='btn btn-secondary' id='file_" + index + "_domain'>Domain</button>" + "<button type='button' class='btn btn-secondary' id='file_" + index + "_problem'>Problem</button>" + "<button type='button' class='btn btn-secondary' id='file_" + index + "_animation'>Animation</button>" + "</div>" + "</td>";
-  /*var divFileName = document.createElement('tr');
+  var divFileName = document.createElement('div');
   divFileName.setAttribute("id", "file_" + index);
   divFileName.setAttribute("class", "divFile");
   divFileName.textContent = "[ File " + index + " ] " +  file.name;
@@ -160,99 +151,33 @@ function createFileDiv(file, index) {
   
   buttonDomain.setAttribute("id", "file_" + index + "_domain");
   buttonProblem.setAttribute("id", "file_" + index + "_problem");
-  buttonAnimation.setAttribute("id", "file_" + index + "_animation");*/
-
-  /*var buttonDomain = document.getElementById("file_" + index + "_domain");
-  var buttonProblem = document.getElementById("file_" + index + "_problem");
-  var buttonAnimation = document.getElementById("file_" + index + "_animation");
+  buttonAnimation.setAttribute("id", "file_" + index + "_animation");
   
   buttonDomain.addEventListener("click", function(e) {
-    /*buttonDomain.setAttribute("style", "background-color: #117AC8;");
+    buttonDomain.setAttribute("style", "background-color: #117AC8;");
     buttonProblem.setAttribute("style", "background-color: #9C9C9C;");
     buttonAnimation.setAttribute("style", "background-color: #9C9C9C;");
-    buttonDomain.removeClass('btn-secondary');
-    buttonDomain.addClass('btn-success')
-    file.contentType = "Domain";
-  });
-
-  buttonProblem.addEventListener("click", function(e) {*/
-    /*buttonDomain.setAttribute("style", "background-color: #9C9C9C;");
-    buttonProblem.setAttribute("style", "background-color: #117AC8;");
-    buttonAnimation.setAttribute("style", "background-color: #9C9C9C;");
-    buttonProblem.removeClass('btn-secondary');
-    buttonProblem.addClass('btn-success')
-    file.contentType = "Problem";
-  });
-
-  buttonAnimation.addEventListener("click", function(e) {*/
-    /*buttonDomain.setAttribute("style", "background-color: #9C9C9C;");
-    buttonProblem.setAttribute("style", "background-color: #9C9C9C;");
-    buttonAnimation.setAttribute("style", "background-color: #117AC8;");*
-    buttonAnimation.removeClass('btn-secondary');
-    buttonAnimation.addClass('btn-success')
-    file.contentType = "Animation";
-  });/
-  
-  /*divFileType.appendChild(buttonDomain);
-  divFileType.appendChild(buttonProblem);
-  divFileType.appendChild(buttonAnimation);
-  divFileName.appendChild(divFileType);*/
-  //return divFileName;
-  return table_row;
-} 
-
-function btnListeners(file, index){
-  var buttonDomain = document.getElementById("file_" + index + "_domain");
-  var buttonProblem = document.getElementById("file_" + index + "_problem");
-  var buttonAnimation = document.getElementById("file_" + index + "_animation");
-  
-  buttonDomain.addEventListener("click", function(e) {
-    buttonDomain.classList.remove('btn-secondary');
-    buttonDomain.classList.add('btn-success');
-
-    buttonProblem.classList.remove('btn-success');
-    buttonAnimation.classList.remove('btn-success');
-
-    buttonProblem.classList.add('btn-secondary');
-    buttonAnimation.classList.add('btn-secondary');
     file.contentType = "Domain";
   });
 
   buttonProblem.addEventListener("click", function(e) {
-    buttonProblem.classList.remove('btn-secondary');
-    buttonProblem.classList.add('btn-success');
-
-    buttonDomain.classList.remove('btn-success');
-    buttonAnimation.classList.remove('btn-success');
-
-    buttonDomain.classList.add('btn-secondary');
-    buttonAnimation.classList.add('btn-secondary');
+    buttonDomain.setAttribute("style", "background-color: #9C9C9C;");
+    buttonProblem.setAttribute("style", "background-color: #117AC8;");
+    buttonAnimation.setAttribute("style", "background-color: #9C9C9C;");
     file.contentType = "Problem";
   });
 
   buttonAnimation.addEventListener("click", function(e) {
-    buttonAnimation.classList.remove('btn-secondary');
-    buttonAnimation.classList.add('btn-success');
-
-    buttonProblem.classList.remove('btn-success');
-    buttonDomain.classList.remove('btn-success');
-
-    buttonProblem.classList.add('btn-secondary');
-    buttonDomain.classList.add('btn-secondary');
+    buttonDomain.setAttribute("style", "background-color: #9C9C9C;");
+    buttonProblem.setAttribute("style", "background-color: #9C9C9C;");
+    buttonAnimation.setAttribute("style", "background-color: #117AC8;");
     file.contentType = "Animation";
   });
   
-}
-
-function customAlertBox(title, message){
-  var alert_title = document.getElementById('alert_title');
-  var alert_message = document.getElementById('alert_msg');
-
-  alert_title.innerHTML = title;
-  alert_message.innerHTML = message;
-
-  $("#modal_alert").modal();
-}
-
-
+  divFileType.appendChild(buttonDomain);
+  divFileType.appendChild(buttonProblem);
+  divFileType.appendChild(buttonAnimation);
+  divFileName.appendChild(divFileType);
+  return divFileName;
+} 
 /** (Apr 23, 2020) Drag and Drop update **/
