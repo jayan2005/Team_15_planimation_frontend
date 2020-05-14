@@ -54,7 +54,7 @@ function uploadPDDLFile() {
     var regexp = /(\.|\/)pddl$/;
     if(!planimation_dragdrop.files[0].name.match(regexp)) {
       //alert("Please put in pddl files!");
-      customAlertBox("Incorrect File Type", "<p>Please upload PDDL (.pddl) files only.</p>");
+      customAlertBox("Incorrect File Type", "<p>Please upload PDDL (.pddl) files only.</p>"); // code by Jayan - 14th May 2020
       return;
     }
     uploadSingleFile();
@@ -64,8 +64,8 @@ function uploadPDDLFile() {
 function uploadVFGFile() {
   var regexp = /(\.|\/)vfg$/;
   if(!planimation_dragdrop.files[0].name.match(regexp)) {
-    alert("Please put in vfg files!");
-    customAlertBox("Incorrect File Type", "<p>Please upload VFG (.vfg) file only.</p>");
+    //alert("Please put in vfg files!");
+    customAlertBox("Incorrect File Type", "<p>Please upload VFG (.vfg) file only.</p>"); // code by Jayan - 14th May 2020
     return;
   }
   // take the first file and upload it
@@ -83,6 +83,7 @@ function uploadMultipleFiles() {
   var typeModal = document.getElementById("file-type"); //table-body
   typeModal.innerHTML = "";
 
+  // code by Jayan - 14th May 2020
   // clear any error message in upload file modal
   var clearErrorMsg = document.getElementById("upload_error_msg"); 
   clearErrorMsg.innerHTML = "";
@@ -92,6 +93,7 @@ function uploadMultipleFiles() {
   for(var i = 0; i < planimation_dragdrop.files.length; i++) {
     if(!planimation_dragdrop.files[i].name.match(regexp)) {
       //alert("[Invalid file: " + planimation_dragdrop.files[i].name + " ] " + "Please put in pddl files!");
+      // code by Jayan - 14th May 2020
       var msg = '<b>Alert:</b> File <b>"' + planimation_dragdrop.files[i].name + '"</b> invalid format. Please upload PDDL (.pddl) files only.';
       customErrorDialog("upload_error_msg", msg);
     } else {
