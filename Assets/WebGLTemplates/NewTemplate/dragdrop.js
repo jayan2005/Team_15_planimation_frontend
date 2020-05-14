@@ -144,7 +144,7 @@ function fileLoaderMultiple(file) {
 function createFileDiv(file, index) {
 
   var table_row = document.createElement('tr');
-  table_row.innerHTML = "<td ><i class='far fa-file-powerpoint'></i> </td><td class='text-left' id='file_'" + index + ">" + file.name + "</td><td class='text-center'>" + "<div class='btn-group' role='group'>" + "<button type='button' class='btn btn-secondary' id='file_" + index + "_domain'>Domain</button>" + "<button type='button' class='btn btn-secondary' id='file_" + index + "_problem'>Problem</button>" + "<button type='button' class='btn btn-secondary' id='file_" + index + "_animation'>Animation</button>" + "</div>" + "</td>";
+  table_row.innerHTML = "<td ><i class='far fa-file-powerpoint'></i> </td><td class='text-left' id='file_'" + index + "><i>" + file.name + "</i></td><td class='text-center'>" + "<div class='btn-group' role='group'>" + "<button type='button' class='btn btn-secondary' id='file_" + index + "_domain'>Domain</button>" + "<button type='button' class='btn btn-secondary' id='file_" + index + "_problem'>Problem</button>" + "<button type='button' class='btn btn-secondary' id='file_" + index + "_animation'>Animation</button>" + "</div>" + "</td>";
   return table_row;
 } 
 
