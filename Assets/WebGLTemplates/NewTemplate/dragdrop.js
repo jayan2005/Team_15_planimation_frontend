@@ -210,7 +210,7 @@ function customAlertBox(title, message){
 function customErrorDialog(id, message){
   var error_msg = document.getElementById(id);
   //error_msg.innerHTML = ""
-  error_msg.innerHTML = "<div class='alert alert-danger' role='alert'><i class='fas fa-exclamation-triangle'></i> " + message + "</div>";
+  error_msg.innerHTML += "<div class='alert alert-danger' role='alert'><i class='fas fa-exclamation-triangle'></i> " + message + "</div>";
 }
 
 
